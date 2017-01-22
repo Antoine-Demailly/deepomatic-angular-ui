@@ -1,13 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
 html {
   font-size: 62.5%;
+  font-family: 'PT Sans', sans-serif;
+
   box-sizing: border-box;
 }
 
 body {
   font-size: 1.6rem;
   margin: 0; padding: 0;
+  background: #65C3AD;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+$container-width: 900px;
+
+#container {
+  margin: auto;
+  max-width: $container-width;
+
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+h2 {
+  color: #717882;
+}
+
+@media screen and (max-width: $container-width) {
+  #container {
+    border-radius: 0;
+  }
 }
