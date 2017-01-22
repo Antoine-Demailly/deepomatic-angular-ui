@@ -3,6 +3,7 @@
 
   angular
     .module('deepomatic', [
+      'deepomatic.api',
       'deepomatic.layout'
     ]);
 })();
