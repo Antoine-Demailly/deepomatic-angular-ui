@@ -15,5 +15,23 @@
   "bugs": {
     "url": "https://github.com/Antoine-Demailly/deepomatic-angular-ui/issues"
   },
-  "homepage": "https://github.com/Antoine-Demailly/deepomatic-angular-ui#readme"
+  "homepage": "https://github.com/Antoine-Demailly/deepomatic-angular-ui#readme",
+  "dependencies": {
+    "angular": "1.5.8",
+    "font-awesome": "^4.7.0",
+    "semantic-ui": "2.2.6"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "2.6.0",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-ng-annotate": "2.0.0",
+    "gulp-rename": "latest",
+    "gulp-sass": "2.3.2",
+    "gulp-uglify": "1.5.2"
+  }
 }
