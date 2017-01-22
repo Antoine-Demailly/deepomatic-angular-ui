@@ -1,0 +1,19 @@
+{
+  "name": "deepomatic-test",
+  "version": "1.0.0",
+  "description": "An easy way to interact with Deepomatic API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antoine-Demailly/deepomatic-angular-ui.git"
+  },
+  "author": "Antoine Demailly <antoine.demailly@gmx.fr> (https://www.antoinedemailly.fr)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antoine-Demailly/deepomatic-angular-ui/issues"
+  },
+  "homepage": "https://github.com/Antoine-Demailly/deepomatic-angular-ui#readme"
+}
