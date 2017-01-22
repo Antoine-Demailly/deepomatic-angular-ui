@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('deepomatic-test', [
-      'deepomatic-test.layout'
+    .module('deepomatic', [
+      'deepomatic.layout'
     ]);
 })();

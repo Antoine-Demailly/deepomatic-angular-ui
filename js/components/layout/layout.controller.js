@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('deepomatic-test.layout')
+    .module('deepomatic.layout')
     .controller('LayoutController', LayoutController);
 
   /* @ngInject */
