@@ -3,6 +3,7 @@
 
   angular
     .module('deepomatic', [
+      'ngFileUpload',
       'deepomatic.api',
       'deepomatic.layout'
     ]);

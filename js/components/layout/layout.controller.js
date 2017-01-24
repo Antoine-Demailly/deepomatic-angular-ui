@@ -6,30 +6,32 @@
     .controller('LayoutController', LayoutController);
 
   /* @ngInject */
-  function LayoutController() {
-
+  function LayoutController(Upload) {
     // Reference to this controller
     var vm = this;
 
     /// Attributes
     ///////
 
-    vm.attribute = '';
+    vm.detectButtonDisable = true;
+
+    vm.picture = '';
+    vm.boxes = [];
 
     /// Public Methods
     ///////
 
-    vm.example = example;
+    vm.detect = detect;
+    vm.upload = upload;
 
-    function example() {
-
+    function detect() {
+      console.log('Detect');
     }
 
-    /// Private Methods
-    ///////
-
-    function examplePrivate() {
-
+    function upload(file) {
+      Upload.base64DataUrl(file).then(function(fileBase64) {
+        vm.picture = fileBase64;
+      });
     }
   }
 })();

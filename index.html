@@ -2,17 +2,27 @@
 <html lang="en" ng-app="deepomatic">
   <head>
     <meta charset="utf-8">
-    <title>Deepomatic Angular UI</title>
+    <title>Deepomatic Angular</title>
 
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/build/css/app.css">
     <script src="/build/js/app.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-controller="LayoutController as layout">
     <div id="container">
-      <h1>Deepomatic Angular UI</h1>
+      <header>
+        <h1>Deepomatic Angular</h1>
 
-      <div class="drop-box">
+        <div class="right-nav">
+          <button type="button" name="button" ng-disabled="layout.detectButtonDisable" ng-click="layout.detect();">Detect</button>
+        </div>
+      </header>
+
+      <div class="drop-box" ngf-select="layout.upload($file)" ngf-drop="layout.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB">
+        <div class="overlay" ng-show="layout.picture.length">
+          <img ng-src="{{layout.picture}}" alt="" class="uploaded-picture">
+        </div>
         <div class="content">
           <div class="files-mini">
             <div class="file-mini">

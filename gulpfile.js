@@ -65,6 +65,7 @@ const jsConfig = {
 
 const jsFiles = [
   './node_modules/angular/angular.js',
+  './node_modules/ng-file-upload/dist/ng-file-upload.js',
   './js/app.module.js',
   './js/config/*.run.js',
   './js/config/*.config.js',
