@@ -14,7 +14,7 @@
         <h1>Deepomatic Angular</h1>
 
         <div class="right-nav">
-          <button type="button" name="button" ng-disabled="layout.detectButtonDisable" ng-click="layout.detect();">Detect</button>
+          <button type="button" name="button" disabled="disabled" ng-disabled="layout.detectButtonDisable" ng-click="layout.detect();">Detect</button>
         </div>
       </header>
 
@@ -62,7 +62,7 @@
       </div>
 
       <div class="url-input">
-        <input type="text" name="" value="" placeholder="Set image URL">
+        <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="layout.urlInput()" ng-model="layout.urlInputValue">
       </div>
     </div>
   </body>

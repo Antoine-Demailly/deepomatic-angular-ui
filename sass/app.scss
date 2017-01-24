@@ -75,8 +75,7 @@ header {
     vertical-align: middle;
 
     button {
-      background: lightgray;
-      // background: #65C3AD;
+      background: #65C3AD;
       border: none;
       border-radius: $border-radius;
       padding: 5px 20px;
@@ -84,9 +83,15 @@ header {
       font-size: 1.4rem;
       outline: 0;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #1abc9c;
     }
 
     button:disabled {
+      background: lightgray;
       cursor: default;
     }
   }
@@ -112,7 +117,7 @@ header:after{
   .overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.70);
+    background: rgba(0, 0, 0, 1);
     border: 2px solid black;
     z-index: 10;
     border-radius: $border-radius;
