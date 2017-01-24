@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('deepomatic.layout')
-    .controller('LayoutController', LayoutController);
+    .module('deepomatic.detector')
+    .controller('DetectorController', DetectorController);
 
   /* @ngInject */
-  function LayoutController(Upload) {
+  function DetectorController(Upload, $http, $interval) {
     // Reference to this controller
     var vm = this;
 
@@ -14,6 +14,7 @@
     ///////
 
     vm.detectButtonDisable = true;
+    vm.overlay = false;
 
     vm.picture = '';
     vm.urlInputValue = '';
@@ -36,8 +37,7 @@
       });
     }
 
-    function urlInput() {
-      console.log('hello');
+    function urlInput() { console.log('urlInput()');
       validData();
     }
 

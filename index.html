@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="/build/css/app.css">
     <script src="/build/js/app.js" charset="utf-8"></script>
   </head>
-  <body ng-controller="LayoutController as layout">
+  <body ng-controller="DetectorController as detector">
     <div id="container">
       <header>
         <h1>Deepomatic Angular</h1>
 
         <div class="right-nav">
-          <button type="button" name="button" disabled="disabled" ng-disabled="layout.detectButtonDisable" ng-click="layout.detect();">Detect</button>
+          <button type="button" name="button" disabled="disabled" ng-disabled="detector.detectButtonDisable" ng-click="detector.detect();">Detect</button>
         </div>
       </header>
 
-      <div class="drop-box" ngf-select="layout.upload($file)" ngf-drop="layout.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+      <div class="drop-box" ngf-select="detector.upload($file)" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB">
-        <div class="overlay" ng-show="layout.picture.length">
-          <img ng-src="{{layout.picture}}" alt="" class="uploaded-picture">
+        <div class="overlay" ng-show="detector.picture.length">
+          <div class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+          <img ng-src="{{detector.picture}}" alt="" class="uploaded-picture">
         </div>
         <div class="content">
           <div class="files-mini">
@@ -62,7 +63,7 @@
       </div>
 
       <div class="url-input">
-        <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="layout.urlInput()" ng-model="layout.urlInputValue">
+        <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
       </div>
     </div>
   </body>

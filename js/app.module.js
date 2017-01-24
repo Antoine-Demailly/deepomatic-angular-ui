@@ -4,7 +4,6 @@
   angular
     .module('deepomatic', [
       'ngFileUpload',
-      'deepomatic.api',
-      'deepomatic.layout'
+      'deepomatic.detector'
     ]);
 })();

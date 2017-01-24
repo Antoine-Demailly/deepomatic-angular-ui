@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('deepomatic.layout', []);
+    .module('deepomatic.detector', []);
 })();
