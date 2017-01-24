@@ -13,15 +13,15 @@
       <header>
         <h1>Deepomatic Angular</h1>
 
-        <div class="right-nav">
+        <div class="right-nav" ng-class="{test: detector.choice == 'weapons'}">
           <button type="button" name="button" disabled="disabled" ng-disabled="detector.detectButtonDisable" ng-click="detector.detect();">Detect</button>
         </div>
       </header>
 
-      <div class="drop-box" ngf-select="detector.upload($file)" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB">
-        <div class="overlay" ng-show="detector.picture.length">
-          <div class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+      <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
+        <div class="overlay">
+          <div class="overlay-close" ng-click="detector.reset()"><i class="fa fa-times" aria-hidden="true"></i></div>
           <img ng-src="{{detector.picture}}" alt="" class="uploaded-picture">
         </div>
         <div class="content">
@@ -52,18 +52,40 @@
             Drag & drop
           </div>
           <div class="drag-subtitle">
-            your picture here, or <span class="underline">browse</span>
+            your picture here, or <span class="underline" ngf-select="detector.upload($file)" ngf-pattern="'image/*'"
+          ngf-accept="'image/*'" ngf-max-size="20MB">browse</span>
           </div>
         </div>
       </div>
-      <div class="or">
-        <div class="or-line"></div>
-        OR
-        <div class="or-line"></div>
-      </div>
 
-      <div class="url-input">
-        <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
+      <div ng-hide="detector.overlay">
+        <div class="delimeter">
+          <div class="delimeter-line"></div>
+          OR
+          <div class="delimeter-line"></div>
+        </div>
+
+        <div class="url-input">
+          <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
+        </div>
+
+        <div class="delimeter">
+          <div class="delimeter-line"></div>
+          CHECK FOR
+          <div class="delimeter-line"></div>
+        </div>
+
+        <div class="choices">
+          <div class="choice" ng-click="detector.choice = 'fashion'" ng-class="{selected: detector.choice == 'fashion'}">
+            <img src="img/tie.svg" alt="">
+            <p>Fashion</p>
+          </div>
+
+          <div class="choice" ng-click="detector.choice = 'weapons'" ng-class="{selected: detector.choice == 'weapons'}">
+            <img src="img/target.svg" alt="">
+            <p>Weapons</p>
+          </div>
+        </div>
       </div>
     </div>
   </body>

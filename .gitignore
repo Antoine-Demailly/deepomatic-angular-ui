@@ -2,7 +2,6 @@
 #######################
 node_modules/
 build/
-api.json
 
 #   Compiled source   #
 #######################
