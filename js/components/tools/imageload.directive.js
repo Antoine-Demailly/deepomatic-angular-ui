@@ -6,7 +6,7 @@
     .directive('imageLoad', imageLoad);
 
   /* @ngInject */
-  function imageLoad($rootScope) {
+  function imageLoad($rootScope, $window) {
     var directive = {
       restrict: 'A',
       link: linkFunc,
@@ -20,8 +20,8 @@
     function linkFunc(scope, el, attr, ctrl) {
       scope.offset = {};
 
-      $rootScope.$on('newBox', function(e) {
-        $rootScope.$broadcast('receiveOffset', scope.offset);
+      $rootScope.$on('newBox', function(e, uid) {
+        $rootScope.$broadcast('receiveOffsetInit-' + uid, scope.offset);
       });
 
       el.on('load', function(e) {
@@ -33,6 +33,40 @@
         };
 
         el.addClass('loaded');
+      });
+
+      angular.element($window).bind('resize', function() {
+        var change = false;
+
+        var left = el[0].offsetLeft;
+        if (scope.offset.left != left) {
+          scope.offset.left = left;
+          change = true;
+        }
+
+        var top = el[0].offsetTop;
+        if (scope.offset.top != top) {
+          scope.offset.top = top;
+          change = true;
+        }
+
+        var width = el[0].offsetWidth;
+        if (scope.offset.width != width) {
+          scope.offset.width = width;
+          change = true;
+        }
+
+        var height = el[0].offsetHeight;
+        if (scope.offset.height != height) {
+          scope.offset.height = height;
+          change = true;
+        }
+
+        if (change == true) {
+          $rootScope.$broadcast('receiveOffsetResize', scope.offset);
+        }
+
+        scope.$digest();
       });
     }
   }

@@ -15,6 +15,7 @@
 
     vm.detectButtonDisable = true;
     vm.overlay = false;
+    vm.isDetect = false;
 
     vm.choice = 'fashion';
     vm.currentTaskId = '';
@@ -41,6 +42,7 @@
       vm.boxes = {};
       vm.picture = '';
       vm.overlay = false;
+      vm.isDetect = false;
     }
 
     function detect() { console.log('detect()', arguments);
@@ -65,7 +67,7 @@
     function detectByUrl(url) {
       vm.check = 0;
 
-      $http.get('/api/detect/weapons/?url=' + url)
+      $http.get('/api/detect/' + vm.choice + '/?url=' + url)
         .then(function(response) {
           if (typeof response.data.task_id === 'string') {
             vm.currentTaskId = response.data.task_id;
@@ -79,9 +81,9 @@
     function checkTask() {
       $http.get('/api/tasks/' + vm.currentTaskId)
         .then(function(response) {
-          if (typeof response.data.task.data === 'object' && typeof response.data.task.data.boxes === 'object') {
+          if (response.data.task.status == 'success' && response.data.task.data != null && typeof response.data.task.data.boxes === 'object') {
             vm.boxes = response.data.task.data.boxes;
-            console.log('boxes', vm.boxes);
+            vm.isDetect = true;
             $interval.cancel(vm.detectInterval);
             return;
           }

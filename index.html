@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Deepomatic Angular</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/build/css/app.css">
     <script src="/build/js/app.js" charset="utf-8"></script>
@@ -21,11 +22,12 @@
       <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
         <div class="overlay">
+          <div class="detail" box-detail></div>
           <div class="overlay-close" ng-click="detector.reset()"><i class="fa fa-times" aria-hidden="true"></i></div>
           <img ng-src="{{detector.picture}}" class="uploaded-picture" image-load>
           <span class="helper"></span>
           <div class="boxes" ng-repeat="(type, list) in detector.boxes">
-            <div ng-repeat="box in list" box positions="box" class="box"></div>
+            <div ng-repeat="box in list" box positions="box" type="{{type}}" class="box"></div>
           </div>
         </div>
         <div class="content">
@@ -70,9 +72,11 @@
         </div>
 
         <div class="url-input">
-          <input type="text" name="" value="" placeholder="Set image URL" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
+          <input type="text" name="" value="" placeholder="Paste image direct link (.jpg, .png, .gif)" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
         </div>
+      </div>
 
+      <div ng-hide="detector.isDetect">
         <div class="delimeter">
           <div class="delimeter-line"></div>
           CHECK FOR
