@@ -22,7 +22,11 @@
     ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
         <div class="overlay">
           <div class="overlay-close" ng-click="detector.reset()"><i class="fa fa-times" aria-hidden="true"></i></div>
-          <img ng-src="{{detector.picture}}" alt="" class="uploaded-picture">
+          <img ng-src="{{detector.picture}}" class="uploaded-picture" image-load>
+          <span class="helper"></span>
+          <div class="boxes" ng-repeat="(type, list) in detector.boxes">
+            <div ng-repeat="box in list" box>{{box}}</div>
+          </div>
         </div>
         <div class="content">
           <div class="files-mini">

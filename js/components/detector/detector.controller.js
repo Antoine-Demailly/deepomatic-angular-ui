@@ -20,7 +20,7 @@
     vm.currentTaskId = '';
     vm.picture = '';
     vm.urlInputValue = '';
-    vm.boxes = [];
+    vm.boxes = {};
     vm.detectInterval = false;
     vm.check = 0;
 
@@ -38,7 +38,7 @@
       vm.urlInputValue = '';
       vm.detectInterval = false;
       vm.detectButtonDisable = true;
-      vm.boxes = [];
+      vm.boxes = {};
       vm.picture = '';
       vm.overlay = false;
     }
@@ -81,6 +81,7 @@
         .then(function(response) {
           if (typeof response.data.task.data === 'object' && typeof response.data.task.data.boxes === 'object') {
             vm.boxes = response.data.task.data.boxes;
+            console.log('boxes', vm.boxes);
             $interval.cancel(vm.detectInterval);
             return;
           }

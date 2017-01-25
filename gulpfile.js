@@ -73,6 +73,7 @@ const jsFiles = [
   './js/components/**/*.module.js',
   './js/components/**/*.service.js',
   './js/components/**/*.controller.js',
+  './js/components/**/*.directive.js',
   './js/components/**/*.filter.js',
   './js/components/**/*.factory.js',
 ];
