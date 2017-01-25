@@ -25,7 +25,7 @@
           <img ng-src="{{detector.picture}}" class="uploaded-picture" image-load>
           <span class="helper"></span>
           <div class="boxes" ng-repeat="(type, list) in detector.boxes">
-            <div ng-repeat="box in list" box>{{box}}</div>
+            <div ng-repeat="box in list" box positions="box" class="box"></div>
           </div>
         </div>
         <div class="content">

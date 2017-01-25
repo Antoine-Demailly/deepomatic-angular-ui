@@ -112,6 +112,15 @@ header:after{
     overflow: hidden;
     white-space: nowrap;
 
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border: 2px solid red;
+    }
+
     .helper {
       display: inline-block;
       height: 100%;
