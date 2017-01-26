@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('deepomatic.tools')
+    .module('deepomatic.detector')
     .directive('imageLoad', imageLoad);
 
   /* @ngInject */
