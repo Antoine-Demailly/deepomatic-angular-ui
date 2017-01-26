@@ -26,7 +26,6 @@
       <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/jpeg,image/jpg,image/png,image/bmp'"
     ngf-accept="'image/jpeg,image/jpg,image/png,image/bmp'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
         <div class="overlay" ng-class="{loading: detector.loaderMessage.length}">
-          <!-- <div class="detail" box-detail></div> -->
           <div class="loader">
             <div class="content">
               <div class="spinner">
@@ -110,7 +109,6 @@
         </p>
       </div>
 
-      <!-- ng-hide="detector.isDetect" -->
       <div>
         <div class="delimeter">
           <div class="delimeter-line"></div>
