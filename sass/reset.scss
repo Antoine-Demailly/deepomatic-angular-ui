@@ -1,0 +1,21 @@
+html {
+  font-size: 62.5%;
+  font-family: 'PT Sans', sans-serif;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0; padding: 0;
+  background: #65C3AD;
+  height: 100vh;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1, h2 {
+  margin: 0;
+}
