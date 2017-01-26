@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/build/css/app.css">
-    <script src="/build/js/app.js" charset="utf-8"></script>
+    <script src="/build/js/app.min.js" charset="utf-8"></script>
   </head>
   <body ng-controller="DetectorController as detector">
     <div id="container">
@@ -23,8 +23,8 @@
         Oups ! {{detector.errorMessage}}
       </div>
 
-      <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
+      <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/jpeg,image/jpg,image/png,image/bmp'"
+    ngf-accept="'image/jpeg,image/jpg,image/png,image/bmp'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
         <div class="overlay" ng-class="{loading: detector.loaderMessage.length}">
           <!-- <div class="detail" box-detail></div> -->
           <div class="loader">
@@ -53,13 +53,13 @@
             <div class="file-mini">
               <i class="fa fa-file-o" aria-hidden="true"></i>
               <div class="extension">
-                .gif
+                .png
               </div>
             </div>
             <div class="file-mini second">
               <i class="fa fa-file-o" aria-hidden="true"></i>
               <div class="extension">
-                .png
+                .bmp
               </div>
             </div>
             <div class="file-mini">
@@ -90,7 +90,7 @@
         </div>
 
         <div class="url-input">
-          <input type="text" name="" value="" placeholder="Paste image direct link (.jpg, .png, .gif)" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue" ng-class="{error: detector.urlInputValue.length && !detector.validInput}">
+          <input type="text" name="" value="" placeholder="Paste image direct link (.jpg, .png, .bmp)" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue" ng-class="{error: detector.urlInputValue.length && !detector.validInput}">
         </div>
       </div>
 
