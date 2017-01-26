@@ -35,6 +35,7 @@
     vm.upload = upload;
     vm.urlInput = urlInput;
     vm.reset = reset;
+    vm.emptyBoxes = emptyBoxes;
 
     function reset() {
       vm.choice = 'fashion';
@@ -126,12 +127,17 @@
             $interval.cancel(vm.detectInterval);
             return;
           } else if (response.data.task.status == 'error') {
-            vm.errorMessage = response.data.task.error;
+            vm.errorMessage = response.data.task.error + ' Please try with a direct link.';
             resetLoader();
             $interval.cancel(vm.detectInterval);
             return;
           }
         });
+    }
+
+    function emptyBoxes() {
+      console.log('emptyBoxes', Object.keys(vm.boxes).length == 0);
+      return Object.keys(vm.boxes).length == 0;
     }
 
     function resetLoader() {

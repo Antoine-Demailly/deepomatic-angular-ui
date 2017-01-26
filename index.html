@@ -20,7 +20,7 @@
       </header>
 
       <div class="upload-error" ng-show="detector.errorMessage.length">
-        Oups ! {{detector.errorMessage}} Please try with a direct link.
+        Oups ! {{detector.errorMessage}}
       </div>
 
       <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
@@ -94,12 +94,17 @@
         </div>
       </div>
 
-      <div ng-if="detector.isDetect">
+      <div ng-show="detector.isDetect">
         <div class="delimeter">
           <div class="delimeter-line"></div>
           WE FOUND
           <div class="delimeter-line"></div>
         </div>
+
+        <p class="boxes-detail" ng-if="detector.emptyBoxes();">
+          Sorry, we don't found any {{::detector.choice}} on this picture.
+        </p>
+
         <p class="boxes-detail" ng-repeat="(type, list) in detector.boxes">
           {{list.length}} {{type}}
         </p>
