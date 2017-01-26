@@ -10,7 +10,9 @@
     var directive = {
       restrict: 'A',
       link: linkFunc,
-      scope: {},
+      scope: {
+        picture: '=',
+      },
       width: null,
       height: null
     };
@@ -19,6 +21,12 @@
 
     function linkFunc(scope, el, attr, ctrl) {
       scope.offset = {};
+
+      scope.$watch('picture', function(newValue, oldValue) {
+        if (newValue == '') {
+          el.removeClass('loaded');
+        }
+      });
 
       $rootScope.$on('newBox', function(e, uid) {
         $rootScope.$broadcast('receiveOffsetInit-' + uid, scope.offset);

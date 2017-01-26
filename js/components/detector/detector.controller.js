@@ -24,6 +24,9 @@
     vm.boxes = {};
     vm.detectInterval = false;
     vm.check = 0;
+    vm.validInput = true;
+    vm.errorMessage = '';
+    vm.loaderMessage = '';
 
     /// Public Methods
     ///////
@@ -37,16 +40,22 @@
       vm.choice = 'fashion';
       vm.currentTaskId = '';
       vm.urlInputValue = '';
+      vm.validInput = true;
       vm.detectInterval = false;
       vm.detectButtonDisable = true;
       vm.boxes = {};
       vm.picture = '';
+      vm.errorMessage = '';
       vm.overlay = false;
       vm.isDetect = false;
     }
 
-    function detect() { console.log('detect()', arguments);
-      detectByUrl(vm.urlInputValue);
+    function detect() {
+      if (vm.urlInputValue.length && vm.validInput) {
+        detectByUrl(vm.urlInputValue);
+      } else {
+        detectByUpload();
+      }
     }
 
     function upload(file) {
@@ -61,11 +70,40 @@
     }
 
     function validateUrl(value) {
-      return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
+      var valid = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
+      valid = value.endsWith('.jpg') || value.endsWith('.png') || value.endsWith('.gif') ? valid : false;
+
+      vm.validInput = valid;
+
+      return valid;
+    }
+
+    function detectByUpload() {
+      vm.loaderMessage = 'Upload image';
+      var body = {
+        base64: vm.picture,
+      };
+
+      Upload.upload({
+          url: '/api/detect/' + vm.choice,
+          data: body
+        }).then(function(resp) {
+          if (typeof resp.data.task_id === 'string') {
+            vm.loaderMessage = 'Image detection';
+            vm.currentTaskId = resp.data.task_id;
+            vm.detectInterval = $interval(checkTask, 1000);
+          } else {
+            resetLoader();
+            vm.errorMessage = 'Error during image upload.';
+          }
+        }, function(resp) {
+          resetLoader();
+          vm.errorMessage = 'Error during image upload.';
+        });
     }
 
     function detectByUrl(url) {
-      vm.check = 0;
+      vm.loaderMessage = 'Image detection';
 
       $http.get('/api/detect/' + vm.choice + '/?url=' + url)
         .then(function(response) {
@@ -73,7 +111,7 @@
             vm.currentTaskId = response.data.task_id;
             vm.detectInterval = $interval(checkTask, 1000);
           } else {
-
+            vm.errorMessage = 'You probably send a bad link.';
           }
         });
     }
@@ -84,10 +122,20 @@
           if (response.data.task.status == 'success' && response.data.task.data != null && typeof response.data.task.data.boxes === 'object') {
             vm.boxes = response.data.task.data.boxes;
             vm.isDetect = true;
+            resetLoader();
+            $interval.cancel(vm.detectInterval);
+            return;
+          } else if (response.data.task.status == 'error') {
+            vm.errorMessage = response.data.task.error;
+            resetLoader();
             $interval.cancel(vm.detectInterval);
             return;
           }
         });
+    }
+
+    function resetLoader() {
+      vm.loaderMessage = '';
     }
 
     function validData() {

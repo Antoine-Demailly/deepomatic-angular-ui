@@ -19,12 +19,30 @@
         </div>
       </header>
 
+      <div class="upload-error" ng-show="detector.errorMessage.length">
+        Oups ! {{detector.errorMessage}} Please try with a direct link.
+      </div>
+
       <div class="drop-box" ngf-drop="detector.upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'"
     ngf-accept="'image/*'" ngf-drag-over-class="'dragover'" ngf-max-size="20MB" ng-class="{preview: detector.overlay}" ng-disabled="detector.overlay">
-        <div class="overlay">
-          <div class="detail" box-detail></div>
+        <div class="overlay" ng-class="{loading: detector.loaderMessage.length}">
+          <!-- <div class="detail" box-detail></div> -->
+          <div class="loader">
+            <div class="content">
+              <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+              </div>
+
+              <p>
+                {{detector.loaderMessage}}
+              </p>
+            </div>
+          </div>
+
           <div class="overlay-close" ng-click="detector.reset()"><i class="fa fa-times" aria-hidden="true"></i></div>
-          <img ng-src="{{detector.picture}}" class="uploaded-picture" image-load>
+          <img ng-src="{{detector.picture}}" ng-show="detector.picture.length" picture="detector.picture" class="uploaded-picture" image-load>
           <span class="helper"></span>
           <div class="boxes" ng-repeat="(type, list) in detector.boxes">
             <div ng-repeat="box in list" box positions="box" type="{{type}}" class="box"></div>
@@ -72,11 +90,23 @@
         </div>
 
         <div class="url-input">
-          <input type="text" name="" value="" placeholder="Paste image direct link (.jpg, .png, .gif)" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue">
+          <input type="text" name="" value="" placeholder="Paste image direct link (.jpg, .png, .gif)" ng-keyup="detector.urlInput()" ng-model="detector.urlInputValue" ng-class="{error: detector.urlInputValue.length && !detector.validInput}">
         </div>
       </div>
 
-      <div ng-hide="detector.isDetect">
+      <div ng-if="detector.isDetect">
+        <div class="delimeter">
+          <div class="delimeter-line"></div>
+          WE FOUND
+          <div class="delimeter-line"></div>
+        </div>
+        <p class="boxes-detail" ng-repeat="(type, list) in detector.boxes">
+          {{list.length}} {{type}}
+        </p>
+      </div>
+
+      <!-- ng-hide="detector.isDetect" -->
+      <div>
         <div class="delimeter">
           <div class="delimeter-line"></div>
           CHECK FOR
@@ -95,6 +125,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </body>
 </html>

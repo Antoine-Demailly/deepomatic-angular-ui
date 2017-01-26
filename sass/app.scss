@@ -85,6 +85,11 @@ header:after{
   display: inline-block;
 }
 
+.upload-error {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
 .drop-box {
   border-radius: $border-radius;
   border: 2px dashed lightgray;
@@ -104,13 +109,38 @@ header:after{
   .overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgb(0, 0, 0);
+    background: #000;
     z-index: 10;
     border-radius: $border-radius;
 
     visibility: hidden;
     overflow: hidden;
     white-space: nowrap;
+
+    .loader {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 40;
+      background:  rgba(0, 0, 0, 0.60);
+      opacity: 0;
+      visibility: hidden;
+      transition: visibility 0.3s 0s, opacity 0.3s;
+
+      .content {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: inherit;
+
+        @import "loader.scss";
+
+        p {
+          color: white;
+          font-size: 2rem;
+          text-align: center;
+        }
+      }
+    }
 
     .box {
       position: absolute;
@@ -186,6 +216,20 @@ header:after{
     &:hover {
       .overlay-close {
         opacity: 1;
+      }
+    }
+  }
+
+  .overlay.loading {
+    .loader {
+      opacity: 1;
+      visibility: visible;
+      transition: visibility 0s, opacity 0.3s;
+    }
+
+    &:hover {
+      .overlay-close {
+        display: none;
       }
     }
   }
@@ -340,6 +384,10 @@ header:after{
   input:hover, input:focus {
     border-color: #65C3AD;
   }
+
+  input.error {
+    border-color: #e74c3c;
+  }
 }
 
 .choices {
@@ -374,6 +422,11 @@ header:after{
   .choice.selected {
     cursor: default;
   }
+}
+
+p.boxes-detail {
+  text-align: center;
+  color: #717882;
 }
 
 @media screen and (max-width: $container-width) {
