@@ -11,11 +11,6 @@
     // Reference to this controller
     var vm = this;
 
-    /// Attributes
-    ///////
-
-    vm.attribute = '';
-
     /// Public Methods
     ///////
 
@@ -27,7 +22,7 @@
     }
 
     function postDetect(picture, success, error) {
-      
+
     }
   }
 })();

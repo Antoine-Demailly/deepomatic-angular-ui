@@ -66,7 +66,7 @@
       });
     }
 
-    function urlInput() { console.log('urlInput()', arguments);
+    function urlInput() {
       validData();
     }
 
@@ -126,17 +126,21 @@
             resetLoader();
             $interval.cancel(vm.detectInterval);
             return;
+          } else if (response.data.task.status == 'pending') {
+            // Do nothing
           } else if (response.data.task.status == 'error') {
             vm.errorMessage = response.data.task.error + ' Please try with a direct link.';
             resetLoader();
             $interval.cancel(vm.detectInterval);
             return;
+          } else {
+            vm.errorMessage = 'Detection fail';
+            $interval.cancel(vm.detectInterval);
           }
         });
     }
 
     function emptyBoxes() {
-      console.log('emptyBoxes', Object.keys(vm.boxes).length == 0);
       return Object.keys(vm.boxes).length == 0;
     }
 
